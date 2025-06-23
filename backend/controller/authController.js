@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
       email,
       password,
       profileImageUrl,
-      adminInviteToken // ✅ added this
+      adminInviteToken //  added this
     } = req.body;
 
     // Check if user already exists
@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email }); // ✅ Fixed here
+    const user = await User.findOne({ email }); //  Fixed here
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -102,7 +102,13 @@ const loginUser = async (req, res) => {
 //@route GET /api/auth/profile
 //@access Private
 const getUserProfile = async (req, res) => {
-        try {} catch (error){
+        try {
+            const user = await User.findById(req.user._id).select("-password");
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            res.json(user);
+        } catch (error){
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
