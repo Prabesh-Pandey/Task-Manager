@@ -55,7 +55,7 @@ const getTasks = async (req, res) => {
         res.json({
             tasks,
             statusSummary: {
-                allTasks,
+                all: allTasks,
                 pendingTasks,
                 inProgressTasks,
                 completedTasks
@@ -415,6 +415,7 @@ const getUserDashboardData = async (req, res) => {
     }
 };
 
+
 module.exports = {
     getTasks,
     getTaskById,
@@ -425,6 +426,7 @@ module.exports = {
     updateTaskChecklist,
     getDashboardData,
     getUserDashboardData
+
 };
 
 
