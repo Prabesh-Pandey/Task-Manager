@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
+
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
@@ -29,12 +30,21 @@ const UserProvider = ({ children }) => {
         };
 
         fetchUser();
-    }, []);
+    }, [user]); // ✅ reactively fetch if user is null
 
     const updateUser = (userData) => {
+        if (import.meta.env.DEV) {
+            console.log("Updated User Context:", userData);
+        }
+
         setUser(userData);
-        localStorage.setItem("token", userData.token); //save token
+        localStorage.setItem("token", userData.token);
         setLoading(false);
+
+        // Debug log
+        if (import.meta.env.DEV) {
+            console.log("Updated User Context:", userData);
+        }
     };
 
     const clearUser = () => {

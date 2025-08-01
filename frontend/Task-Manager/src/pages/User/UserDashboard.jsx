@@ -80,7 +80,7 @@ const UserDashboard = () => {
     <div className="card my-5">
       <div>
         <div className='col-span-3'>
-          <h2 className='text-xl md:text-2xl'>Good Morning! {user?.name}</h2>
+          <h2 className='text-xl md:text-2xl'>Wellcome! {user?.name}</h2>
           <p className='text-xs md:text-[13px] text-gray-400 mt-1.5'>
             {moment().format('MMMM Do YYYY')}
           </p>

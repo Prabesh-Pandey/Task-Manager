@@ -100,10 +100,10 @@ const ManageTasks = () => {
                 setActiveTab={setFilterStatus}
               />
 
-              <button className="hidden lg:flex download-btn" onClick={handleDownloadReport}>
+              {/* <button className="hidden lg:flex download-btn" onClick={handleDownloadReport}>
                 <LuFileSpreadsheet className="text-lg" />
                 Download Report
-              </button>
+              </button> */}
             </div>
           )}
 

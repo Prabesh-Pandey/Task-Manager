@@ -15,17 +15,18 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [adminInviteToken, setAdminInviteToken] = useState('');
+  const [departmentCode, setDepartmentCode] = useState(''); // ✅ NEW STATE
 
   const [error, setError] = useState(null);
 
   const { updateUser } = useContext(UserContext)
   const navigate = useNavigate();
+
   // Handle SignUp logic here
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     let profileImageUrl = "";
-
 
     if (!fullName) {
       setError("Please enter full name. ");
@@ -42,12 +43,16 @@ const SignUp = () => {
       return;
     }
 
+    if (!adminInviteToken && !departmentCode) {
+      setError("Please enter either an Admin Invite Token or a Department Code.");
+      return;
+    }
+
     setError("");
 
-    //SignUp API Call
+    // SignUp API Call
     try {
-
-      //upload profile picture if exists
+      // Upload profile picture if exists
       if (profilePic) {
         const imageUploadRes = await uploadImage(profilePic);
         profileImageUrl = imageUploadRes.imageUrl || "";
@@ -58,7 +63,8 @@ const SignUp = () => {
         email,
         password,
         profileImageUrl,
-        adminInviteToken
+        adminInviteToken,
+        departmentCode, // ✅ NEW FIELD SENT TO BACKEND
       });
 
       const { token, role } = response.data;
@@ -81,7 +87,6 @@ const SignUp = () => {
         setError("Something went wrong. Please try again.");
       }
     }
-
   };
 
   return (
@@ -127,20 +132,28 @@ const SignUp = () => {
               placeholder="6 Digit code"
               type="text"
             />
+
+            <Input
+              value={departmentCode}
+              onChange={({ target }) => setDepartmentCode(target.value)}
+              label="Department Code"
+              placeholder="e.g., code112"
+              type="text"
+            />
           </div>
 
           {error && (
-            <p className="text-red-500 text-sm">{error}</p>
+            <p className="text-red-500 text-sm mt-2">{error}</p>
           )}
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-md hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-md hover:bg-blue-700 transition mt-6"
           >
             SIGN UP
           </button>
 
-          <p className="text-sm text-center text-slate-800">
+          <p className="text-sm text-center text-slate-800 mt-4">
             Already have an account?{" "}
             <Link
               to="/login"
@@ -156,4 +169,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp;
