@@ -36,6 +36,7 @@ const registerUser = async (req, res) => {
       [process.env.DEPT_CODE_MARKETING]: "Marketing",
     };
 
+
     // Determine role and department
     let role = "member";
     let department = null;

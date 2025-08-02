@@ -15,7 +15,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [adminInviteToken, setAdminInviteToken] = useState('');
-  const [departmentCode, setDepartmentCode] = useState(''); // ✅ NEW STATE
+  const [departmentCode, setDepartmentCode] = useState(''); // NEW STATE
 
   const [error, setError] = useState(null);
 
@@ -64,7 +64,7 @@ const SignUp = () => {
         password,
         profileImageUrl,
         adminInviteToken,
-        departmentCode, // ✅ NEW FIELD SENT TO BACKEND
+        departmentCode, //  NEW FIELD SENT TO BACKEND
       });
 
       const { token, role } = response.data;

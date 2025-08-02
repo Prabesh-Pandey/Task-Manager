@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ["Sales", "Advertising", "Marketing"],
             default: null,
-        }, // ✅ new field
+        }, //  new field
     },
     {
         timestamps: true,
