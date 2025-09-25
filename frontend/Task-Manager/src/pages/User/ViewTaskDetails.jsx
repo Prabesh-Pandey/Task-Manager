@@ -103,11 +103,17 @@ const ViewTaskDetails = () => {
                   <div className="flex flex-wrap gap-2 mt-1">
                     {task?.assignedTo?.map((user) => (
                       <div key={user._id} className="flex items-center gap-2">
-                        <img
-                          src={user.profileImageUrl || "/default-avatar.png"}
-                          alt={user.name}
-                          className="w-6 h-6 rounded-full object-cover"
-                        />
+                        {user.profileImageUrl ? (
+                          <img
+                            src={user.profileImageUrl}
+                            alt={user.name}
+                            className="w-6 h-6 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-6 h-6 bg-slate-400 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                            {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                          </div>
+                        )}
                         <span className="text-xs text-gray-600">{user.name}</span>
                       </div>
                     ))}

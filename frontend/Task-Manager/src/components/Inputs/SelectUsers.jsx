@@ -76,11 +76,17 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
                             key={user._id}
                             className="flex items-center gap-4 p-3 border-b border-gray-200"
                         >
-                            <img
-                                src={user.profileImageUrl}
-                                alt={user.name}
-                                className="w-10 h-10 rounded-full"
-                            />
+                            {user.profileImageUrl ? (
+                                <img
+                                    src={user.profileImageUrl}
+                                    alt={user.name}
+                                    className="w-10 h-10 rounded-full"
+                                />
+                            ) : (
+                                <div className="w-10 h-10 bg-slate-400 rounded-full flex items-center justify-center text-white font-semibold">
+                                    {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                                </div>
+                            )}
                             <div className="flex-1">
                                 <p className="font-medium text-gray-800 ">
                                     {user.name}
