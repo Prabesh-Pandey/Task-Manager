@@ -283,8 +283,6 @@ Tasks and users are isolated by department:
 - Admins can only assign tasks to users in their department
 - Dashboard shows department-specific statistics
 
-**Available Departments:** Sales, Marketing, Advertising, HR
-
 ---
 
 Made by Prabesh Pandey
